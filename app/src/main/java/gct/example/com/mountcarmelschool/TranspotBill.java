@@ -118,9 +118,9 @@ public class TranspotBill extends AppCompatActivity {
                 webViewTransportFeeBill.getSettings().setJavaScriptEnabled(true);
                 webViewTransportFeeBill.setVerticalScrollBarEnabled(true);
                 webViewTransportFeeBill.setHorizontalScrollBarEnabled(true);
-                // webViewTransportFeeBill.loadUrl("http://pay.mountcarmeldelhi.com/test/pay/invoice.php?data=C86dbNQPzwsqMpPpq~11153466~III~MCSAN~2017-18~FOURTH~app&p=d");
+                webViewTransportFeeBill.loadUrl("http://pay.mountcarmeldelhi.com/test_tr/pay/invoice.php?data=C86dbNQPzwsqMpPpq~11153466~III~MCSAN~2017-18~FOURTH~app&p=d");
 
-              webViewTransportFeeBill.loadUrl("http://pay.mountcarmeldelhi.com/test_tr/pay/invoice.php?data=58be4d3737d362936bf45557~12171946~Nursery~MCSANKIDS~2017-2018~FOURTH~app&p=d");  //
+
                 webViewTransportFeeBill.setWebViewClient(new WebViewClient() {
                     @Override
                     public void onPageCommitVisible(WebView view, String url) {
@@ -129,7 +129,7 @@ public class TranspotBill extends AppCompatActivity {
                     }
                 });
 
-                webViewTransportFeeBill.loadUrl("" + receipt_url);
+                //      webViewTransportFeeBill.loadUrl("" + receipt_url);
                 Log.d("abc", receipt_url);
             }
         }
@@ -137,10 +137,10 @@ public class TranspotBill extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(webViewTransportFeeBill.canGoBack()){
+        if (webViewTransportFeeBill.canGoBack()) {
             webViewTransportFeeBill.goBack();
             Snackbar.make(webViewTransportFeeBill, "Go to back history", Snackbar.LENGTH_SHORT).show();
-        }else {
+        } else {
             finish();
         }
 
