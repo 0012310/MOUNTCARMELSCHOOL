@@ -120,6 +120,7 @@ public class TranspotBill extends AppCompatActivity {
                 webViewTransportFeeBill.setHorizontalScrollBarEnabled(true);
                 // webViewTransportFeeBill.loadUrl("http://pay.mountcarmeldelhi.com/test/pay/invoice.php?data=C86dbNQPzwsqMpPpq~11153466~III~MCSAN~2017-18~FOURTH~app&p=d");
 
+              webViewTransportFeeBill.loadUrl("http://pay.mountcarmeldelhi.com/test_tr/pay/invoice.php?data=58be4d3737d362936bf45557~12171946~Nursery~MCSANKIDS~2017-2018~FOURTH~app&p=d");  //
                 webViewTransportFeeBill.setWebViewClient(new WebViewClient() {
                     @Override
                     public void onPageCommitVisible(WebView view, String url) {
