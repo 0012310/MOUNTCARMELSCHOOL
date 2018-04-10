@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?><!-- suppress ALL -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="gct.example.com.mountcarmelschool">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/logo1"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Splash"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+
+        </activity>
+
+        <activity
+            android:name=".Login"
+
+
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            /> <!-- Make default keyboard pop up disable -->
+        <activity
+            android:name=".Main2Activity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ViewPagerActivity" />
+        <activity
+            android:name=".Attendance"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".TranspotBill" />
+        <activity
+            android:name=".Wise"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        // to lock auto rotate
+        <activity android:name=".FeeBills" />
+        <activity android:name=".FeeReceipts" />
+        <activity android:name=".TransportReceipt" />
+        <activity android:name=".AssessmentRecord" />
+        <activity android:name=".Worthy" />
+        <activity android:name=".Intellect" />
+        <activity android:name=".Stature" />
+        <activity android:name=".Emotion" />
+        <activity android:name=".SAttendance" />
+        <activity
+            android:name=".SchoolCalendar"
+            android:theme="@style/AppTheme1" />
+        <activity
+            android:name=".Sms"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".StaffBd" />
+        <activity
+            android:name=".Swise"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".StaffPagerActivity" />
+        <activity
+            android:name=".SWorthy"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SIntellect"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SStature"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".SEmotion"
+            android:windowSoftInputMode="stateHidden" />   // Here hiding automatic open key
+        <activity android:name=".SNotic" />
+        <activity android:name=".model_rahul.Gridshow" />
+        <activity android:name=".model_rahul.ImageShow" />
+        <activity android:name=".Birthday_Wishes" />
+        <activity android:name=".Message_Wished" />
+        <activity android:name=".Reply" />
+        <activity android:name=".gallary.NewGalleryActivity" />
+        <activity android:name=".gallary.EventNewGallary" />
+        <activity android:name=".gallary.NewEventDetial" />
+        <activity
+            android:name=".MultiSelectSportsActivity"
+            android:label="Attendance"
+            android:theme="@style/AppTheme1" />
+        <activity android:name=".School_Calendar" />
+
+        <activity android:name=".CalenderDialogeActivity"></activity>
+
+
+        <service android:name=".MessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_nautification_icon"
+            android:resource="@drawable/ic_stat_name"
+            />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_nautification_color"
+            android:resource="@color/colorAccent"
+            />
+
+
+
+
+
+
+    </application>
+
+</manifest>

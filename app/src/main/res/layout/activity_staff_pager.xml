@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_explore_pager"
+    style="@android:style/Theme.DeviceDefault.NoActionBar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="gct.example.com.mountcarmelschool.StaffPagerActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout_staff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <!--<include layout="@layout/app_bar" />-->
+
+        <!-- <RelativeLayout
+             android:id="@+id/rl1"
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:background="#0E91FF">
+
+             <ImageView
+
+                 android:id="@+id/imageView1"
+                 android:layout_width="35dp"
+                 android:layout_height="35dp"
+                 android:layout_centerVertical="true"
+                 android:layout_marginLeft="10dp"
+                 android:src="@mipmap/back" />
+
+         </RelativeLayout>-->
+        <!--  ?attr/actionBarSize-->
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayoutStaff"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#FFF"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+            app:tabTextColor="#383838"
+            />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpagerStaff"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/app_bar_layout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</RelativeLayout>

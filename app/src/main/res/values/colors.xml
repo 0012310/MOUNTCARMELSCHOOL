@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2874A6</color>
+    <color name="colorPrimaryDark">#FF242A54</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccentwhite">#FFF</color>
+    <color name="colorWhite">#FFF</color>
+    <color name="colorWhiteformonth">#2874A6</color>
+    <color name="present_color">#2a843b</color> GRAY
+
+    <color name="gray_transparent1">#10000000</color>
+
+    <color name="white">#10000000</color>
+
+    <color name="color_red">#10ea0505</color>
+
+
+</resources>

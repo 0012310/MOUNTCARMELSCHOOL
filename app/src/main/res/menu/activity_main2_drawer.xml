@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group
+        android:id="@+id/one"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/attendance"
+            android:icon="@drawable/attendance"
+            android:title="Attendance" >
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/two"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/myassignment"
+            android:icon="@drawable/assignment"
+            android:title="Assessment Record" >
+        </item>
+    </group>
+
+
+
+
+    <group
+        android:id="@+id/three"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/wise"
+            android:icon="@drawable/ic_mood_black_24dp"
+            android:title="WISE" >
+        </item>
+    </group>
+
+
+    <group
+        android:id="@+id/four"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/gallary"
+            android:icon="@drawable/galleryic_collections_black_24dp"
+            android:title="Gallery" >
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/five"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/feebill"
+            android:icon="@drawable/freereceipt"
+            android:title="Fee Bill" >
+        </item>
+
+    </group>
+    <group
+        android:id="@+id/six"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/transportbill"
+            android:icon="@drawable/transportbilln"
+            android:title="Transport Bill" >
+        </item>
+    </group>
+
+
+    <group
+        android:id="@+id/eaght"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/transportreceipt"
+            android:icon="@drawable/transportreceipt"
+            android:title="Transport Receipt" >
+        </item>
+
+    </group>
+
+    <group
+        android:id="@+id/seven"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/feereceipt"
+            android:icon="@drawable/feereceipt"
+            android:title="Fee  Receipt">
+
+        </item>
+
+    </group>
+
+
+    <group
+        android:id="@+id/Sone"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/Schoolcalendar"
+            android:icon="@drawable/schoolcalendar"
+            android:title="School Calendar">
+
+        </item>
+
+    </group>
+    <group
+        android:id="@+id/Stwo"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/SSWise"
+            android:icon="@drawable/feereceipt"
+            android:title="WISE">
+
+        </item>
+
+    </group>
+
+    <group
+        android:id="@+id/Sthree"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/SAttendance"
+            android:icon="@drawable/attendance"
+            android:title="Attendance">
+
+        </item>
+
+    </group>
+
+
+    <group
+        android:id="@+id/Ssix"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/sms"
+            android:icon="@drawable/sms"
+            android:title="SMS">
+
+        </item>
+
+    </group>
+
+
+
+    <group
+        android:id="@+id/Sseven"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/staffbirthday"
+            android:icon="@drawable/birthday"
+            android:title="Staff Birthday">
+
+        </item>
+
+    </group>
+
+
+
+
+    <group
+        android:id="@+id/Seight"
+        android:checkableBehavior="none">
+
+
+
+    </group>
+
+</menu>

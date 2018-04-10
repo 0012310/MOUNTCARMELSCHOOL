@@ -1,0 +1,57 @@
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="gct.example.com.mountcarmelschool.Tarady">
+
+
+
+
+
+
+   <LinearLayout
+       android:weightSum="4"
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="45dp">
+
+       <Button
+           android:id="@+id/genrel"
+           android:text="Genrel"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+       <Button
+           android:id="@+id/parent"
+           android:text="Parent"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+       <Button
+           android:text="Sibling"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+       <Button
+           android:text="Medical"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+
+
+   </LinearLayout>
+    <LinearLayout
+        android:id="@+id/containerlayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

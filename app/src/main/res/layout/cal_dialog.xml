@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/TextViewTeamAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="5dp"
+            android:text="Fill Events"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/colorWhite"
+            android:textStyle="normal" />
+
+        <ImageView
+            android:id="@+id/iVUpdate"
+            android:layout_width="@dimen/d_20dp"
+            android:layout_height="@dimen/d_20dp"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/d_20dp"
+            android:layout_marginRight="@dimen/d_20dp"
+            android:layout_toLeftOf="@+id/iVDelete"
+            android:layout_toStartOf="@+id/iVDelete"
+            android:src="@drawable/updatebutton" />
+
+        <ImageView
+            android:id="@+id/iVDelete"
+            android:layout_width="@dimen/d_20dp"
+            android:layout_height="@dimen/d_20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/d_20dp"
+            android:layout_marginRight="@dimen/d_20dp"
+            android:src="@drawable/deletebutton" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/gray_transparent1"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextCalData"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_border"
+            android:padding="3dp"
+            android:textSize="15sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/gray_transparent1"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextDo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_border"
+                android:padding="3dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+        <Spinner
+            android:id="@+id/spinnerSelectType"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_border"
+            android:ellipsize="end"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="Players 1"
+            android:lines="1"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textCursorDrawable="@null" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp">
+
+
+
+            <ImageView
+                android:id="@+id/imageViewShowText"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/prof"
+                android:src="@color/gray_transparent1" />
+
+            <!--android:src="@color/gray_transparent1"-->
+
+        </RelativeLayout>
+
+        <TextView
+            android:textColor="#FFF"
+            android:id="@+id/titles1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            tools:text="Dummy text" />
+        <TextView
+            android:textColor="#FFF"
+            android:id="@+id/admNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            tools:text="Dummy text" />
+
+        <!-- Imageview will not be shown because of foreground color which is drawn over it-->
+
+        <!--Textview will not be shown because of foreground color is drawn over it-->
+
+    </LinearLayout>
+
+</FrameLayout>

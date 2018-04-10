@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">MCOP</string>
+
+    <string name="abcd">&quot;&quot;</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_logout">Logout</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_pager_main">PagerMainActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="abc">Please Wait</string>
+    <string name="bible">I do not live by bread alone, but by every word that proceeds from the mouth of God</string>
+
+
+    <string name="verse">&quot;You shall love the Lord your God with all your heart and with all your soul and with all your mind&quot; </string>
+
+
+    <string name="current_date">October, 2017</string>
+    <string name="add_event">ADD CALENDAR EVENT</string>
+    <string name="sun">SUN</string>
+    <string name="mon">MON</string>
+    <string name="tue">TUE</string>
+    <string name="wed">WED</string>
+    <string name="thu">THU</string>
+    <string name="fri">FRI</string>
+    <string name="sat">SAT</string>
+    <string name="last_date">30</string>
+
+
+</resources>

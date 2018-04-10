@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "579744155755",
+    "project_id": "mcop-186805"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579744155755:android:fda50bfcd52c7488",
+        "android_client_info": {
+          "package_name": "gct.example.com.mountcarmelschool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579744155755-kd65ts3j935fa4fm2lttg0sldbp06g6n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gct.example.com.mountcarmelschool",
+            "certificate_hash": "31fa4f759cebc4dfc873a8282878531205bd9419"
+          }
+        },
+        {
+          "client_id": "579744155755-ruc0c8rrs1pf19ehn166ue9qsp5c5t9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALQYOutMzGQhbbzAaAxm2Kql3spb2doA0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
