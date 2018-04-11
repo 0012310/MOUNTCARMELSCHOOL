@@ -73,19 +73,8 @@ public class StaffBd extends AppCompatActivity {
         textdateofbirth = (TextView) findViewById(R.id.textdateofbirth);
         textfirstnameofstaff = (TextView) findViewById(R.id.textfirstnameofstaff);
         textlasttnameofstaff = (TextView) findViewById(R.id.textlasttnameofstaff);
-
-
         textviewwishDetails= (TextView) findViewById(R.id.textviewwishDetails);
-
-
-
-
-
         imgcake = (ImageView) findViewById(R.id.imgcake);
-
-
-
-
 
         imagebdbackOnclick();
         String e_maill = CommonMethods.getPreference(this, "e_mail");

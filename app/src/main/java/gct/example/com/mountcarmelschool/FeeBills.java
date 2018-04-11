@@ -151,7 +151,15 @@ public class FeeBills extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                finish();
+                if (webViewFeeBill.canGoBack()) {
+                    // If web view have back history, then go to the web view back history
+                    webViewFeeBill.goBack();
+                    Snackbar.make(webViewFeeBill, "Go to back history", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    // Ask the user to exit the app or stay in here
+                    finish();
+
+                }
 
             }
         });

@@ -150,7 +150,14 @@ public class TranspotBill extends AppCompatActivity {
         imageviewback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+              /*  finish();*/
+
+                if (webViewTransportFeeBill.canGoBack()) {
+                    webViewTransportFeeBill.goBack();
+                    Snackbar.make(webViewTransportFeeBill, "Go to back history", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    finish();
+                }
             }
         });
     }
