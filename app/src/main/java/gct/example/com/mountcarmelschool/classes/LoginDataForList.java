@@ -14,6 +14,15 @@ public class LoginDataForList {
     private String img;
     private String type;
     private String schoolcode;
+    private String section;
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
 
     public String getTimestamp() {
         return timestamp;

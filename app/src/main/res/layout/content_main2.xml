@@ -148,6 +148,8 @@
 
                         </LinearLayout>
 
+
+
                         <LinearLayout
                             android:id="@+id/linearLayoutStaffNotice"
                             android:layout_width="match_parent"
@@ -236,7 +238,7 @@
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
                                     android:layout_marginTop="10dp"
-                                    android:text="&quot;He makes me lie down in green pastures, He leads me beside quite waters.&quot;"
+                                    android:text="&quot;He refreshes my soul. He guides me along the right paths for his name's sake.&quot;"
                                     android:textColor="#FFF"
                                     android:textSize="18sp"
                                     android:textStyle="normal" />
@@ -247,7 +249,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
                                     android:gravity="end"
-                                    android:text="Psalm 23:2"
+                                    android:text="Psalm 23:3"
                                     android:textColor="#FFF"
                                     android:textSize="15sp"
                                     android:textStyle="italic" />

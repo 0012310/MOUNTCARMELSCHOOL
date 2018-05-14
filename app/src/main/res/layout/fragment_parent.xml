@@ -83,10 +83,11 @@
                         android:layout_marginLeft="5dp"
                         android:text="Name:"
                         android:textSize="11sp"
-                        android:textStyle="normal"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:textStyle="bold"
                         android:layout_marginLeft="2dp"
                         android:textColor="#000"
                         android:id="@+id/textFatherName"
@@ -137,6 +138,42 @@
 
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="horizontal">
+                    <!--  <ImageView
+                          android:layout_gravity="center"
+                          android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:src="@mipmap/occupation"/>-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textColor="#000"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Occupation:"
+                            android:textSize="11sp"
+                            android:textStyle="normal" />
+
+                        <TextView
+                            android:layout_marginLeft="2dp"
+                            android:textColor="#000"
+                            android:id="@+id/textfoccupation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" "
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_marginLeft="10dp"
@@ -172,38 +209,41 @@
 
                 </LinearLayout>
 
+
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:orientation="horizontal">
-                  <!--  <ImageView
-                        android:layout_gravity="center"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@mipmap/occupation"/>-->
+                    <!-- <ImageView
+                         android:layout_gravity="center"
+                         android:layout_width="20dp"
+                         android:layout_height="20dp"
+                         android:src="@mipmap/desigination"/>-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+                        <TextView
+                            android:textColor="#000"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Designation:"
+                            android:textSize="11sp"
+                            android:textStyle="normal" />
 
-                    <TextView
-                        android:textColor="#000"
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Occupation:"
-                        android:textSize="11sp"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:layout_marginLeft="2dp"
-                        android:textColor="#000"
-                        android:id="@+id/textfoccupation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" "
-                        android:textSize="12sp" />
+                        <TextView
+                            android:layout_marginLeft="2dp"
+                            android:textColor="#000"
+                            android:id="@+id/textfded"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" "
+                            android:textSize="12sp" />
                     </LinearLayout>
+
 
 
                 </LinearLayout>
@@ -297,7 +337,7 @@
                     <TextView
                         android:textColor="#000"
                         android:layout_marginLeft="5dp"
-                        android:text="Office No:"
+                        android:text="Office Phone No:"
                         android:textSize="11sp"
                         android:textStyle="normal"
                         android:layout_width="wrap_content"
@@ -334,13 +374,13 @@
 
 
                         <TextView
-                            android:textColor="#000"
-                            android:layout_marginLeft="5dp"
-                            android:text="Email Id:"
-                            android:textSize="11sp"
-                            android:textStyle="normal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Email ID:"
+                            android:textColor="#000"
+                            android:textSize="11sp"
+                            android:textStyle="normal" />
                         <TextView
                             android:layout_marginLeft="2dp"
                             android:textColor="#000"
@@ -389,41 +429,8 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                   <!-- <ImageView
-                        android:layout_gravity="center"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@mipmap/desigination"/>-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    <TextView
-                        android:textColor="#000"
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Designation:"
-                        android:textSize="11sp"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:layout_marginLeft="2dp"
-                        android:textColor="#000"
-                        android:id="@+id/textfded"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" "
-                        android:textSize="12sp" />
-                    </LinearLayout>
 
 
-
-                </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
@@ -508,11 +515,12 @@
                         android:textColor="#000"
                         android:layout_marginLeft="5dp"
                         android:text="Name:"
+                        android:textStyle="bold"
                         android:textSize="11sp"
-                        android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:textStyle="bold"
                         android:layout_marginLeft="2dp"
                         android:textColor="#000"
                         android:id="@+id/textMotherrName"
@@ -749,7 +757,7 @@
                         <TextView
                             android:textColor="#000"
                         android:layout_marginLeft="5dp"
-                        android:text="Office No:"
+                        android:text="Office Phone No:"
                         android:textSize="11sp"
                         android:textStyle="normal"
                         android:layout_width="wrap_content"
@@ -782,15 +790,16 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-                    <TextView
 
-                        android:textColor="#000"
-                        android:layout_marginLeft="5dp"
-                        android:text="Email Id:"
-                        android:textSize="11sp"
-                        android:textStyle="normal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="16dp"
+                            android:layout_marginLeft="5dp"
+                            android:text="Email ID:"
+                            android:textColor="#000"
+                            android:textSize="11sp"
+                            android:textStyle="normal" />
                     <TextView
                         android:layout_marginLeft="2dp"
                         android:textColor="#000"

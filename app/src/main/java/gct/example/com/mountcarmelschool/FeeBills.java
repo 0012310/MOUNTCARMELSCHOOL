@@ -4,10 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.internal.SnackbarContentLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -134,8 +136,10 @@ public class FeeBills extends AppCompatActivity {
         if (webViewFeeBill.canGoBack()) {
             // If web view have back history, then go to the web view back history
             webViewFeeBill.goBack();
-            Snackbar.make(webViewFeeBill, "Go to back history", Snackbar.LENGTH_SHORT).show();
-        } else {
+
+       Snackbar.make(webViewFeeBill, "Go to back history", Snackbar.LENGTH_SHORT).show();
+
+       } else {
             // Ask the user to exit the app or stay in here
             finish();
 

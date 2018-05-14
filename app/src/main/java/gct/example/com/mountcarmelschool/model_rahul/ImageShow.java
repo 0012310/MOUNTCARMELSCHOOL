@@ -1,18 +1,26 @@
 package gct.example.com.mountcarmelschool.model_rahul;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.os.Environment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.DownloadListener;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -32,38 +40,47 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import gct.example.com.mountcarmelschool.R;
 import gct.example.com.mountcarmelschool.gallary.NewEventDetial;
 import me.relex.circleindicator.CircleIndicator;
 
 import static android.view.View.GONE;
+import static gct.example.com.mountcarmelschool.R.id.decption;
 
 public class ImageShow extends AppCompatActivity {
-
     String cid, desc;
     ImageView image, imagegallery2;
-    ImageView imgfull;
     TextView description;
-    ScrollView scrollImageShow;
     LinearLayout linearhalf;
     private static ViewPager mPager;
-
     Context context;
+    int img_pos;
+    TextView textView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_show);
         context = ImageShow.this;
-        imgfull = (ImageView) findViewById(R.id.imgfull);
         linearhalf = (LinearLayout) findViewById(R.id.linearhalf);
-        scrollImageShow = (ScrollView) findViewById(R.id.scrollImageShow);
+        textView1= (TextView) findViewById(R.id.textView1);
+        if (getIntent().getStringExtra("eventname")!=null){
+            textView1.setText(getIntent().getStringExtra("eventname"));
+        }
+
+        List<Field> listitems = new ArrayList<>();
+        img_pos=getIntent().getIntExtra("img_pos",0);
         Intent i = this.getIntent();
-        String fieldUrl = i.getStringExtra("FieldUrl");
+        String fieldUrl = i.getStringExtra("imageURL");
         if (fieldUrl!=null){
-            Toast.makeText(context, ""+fieldUrl, Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(context, ""+fieldUrl, Toast.LENGTH_SHORT).show();
             callImageRequest(fieldUrl);
         }
 
@@ -75,24 +92,18 @@ public class ImageShow extends AppCompatActivity {
         imagegallery2Onclick();
         Log.e("url", cid);
         image = (ImageView) findViewById(R.id.image);
-        description = (TextView) findViewById(R.id.decption);
-        description.setText(desc);
-        //Picasso.with(this).load(cid).resize(500, 400).into(image);
-        imgfull.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-
+        description = (TextView) findViewById(decption);
+        description.setMovementMethod(new ScrollingMovementMethod());
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(context, "hi", Toast.LENGTH_SHORT).show();
                 linearhalf.setVisibility(GONE);
-                Picasso.with(context).load(cid).resize(750, 700).into(imgfull);
-
+                //Picasso.with(context).load(cid).into(imgfull);
+      //          Picasso.with(context).load(cid).resize(600, 200).centerInside().into(imgfull);
             }
         });
+
     }
     ArrayList<String> strings = new ArrayList<>();
     private void callImageRequest(String fieldUrl) {
@@ -106,13 +117,13 @@ public class ImageShow extends AppCompatActivity {
                             JSONArray mainobj = parentobj.getJSONArray("image");
                             StringBuffer sb = new StringBuffer();
                             ArrayList l1 = new ArrayList();
-                            //fieldList = new ArrayList<>();
                             int i=0;
                             while (i<mainobj.length()){
                                 JSONObject finalobject = mainobj.getJSONObject(i);
                                 String caseId = finalobject.getString("imgid");
                                 String CCNNo = (finalobject.getString("image"));
                                 String Claim = (finalobject.getString("description"));
+                                description.setText(Claim);
                                 strings.add(CCNNo);
                                 i++;
                             }
@@ -139,19 +150,17 @@ public class ImageShow extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-
             }
         });
     }
 
     private void init(ArrayList<String> listOfImages) {
-        /*for (int i = 0; i < XMEN.length; i++)
-            XMENArray.add(XMEN[i]);*/
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(new MyAdapter(context, listOfImages));
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
         indicator.setViewPager(mPager);
     }
+
 
 
     public class MyAdapter extends PagerAdapter {
@@ -180,9 +189,37 @@ public class ImageShow extends AppCompatActivity {
             View myImageLayout = inflater.inflate(R.layout.slide, view, false);
             ImageView myImage = (ImageView) myImageLayout.findViewById(R.id.image);
             //myImage.setImageResource(images.get(position).getImage());
+            final String img = images.get(position);
             Glide.with(context).load(images.get(position)).into(myImage);
-
             view.addView(myImageLayout, 0);
+            myImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    final Dialog fullscreenDialog = new Dialog(context, R.style.DialogFullscreen);
+                    fullscreenDialog.setContentView(R.layout.dialog_fullscreen);
+                    ImageView img_full_screen_dialog = (ImageView) fullscreenDialog.findViewById(R.id.img_full_screen_dialog);
+                    Glide.with(context).load(img).into(img_full_screen_dialog);
+                    img_full_screen_dialog.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                           Toast.makeText(ImageShow.this, "hii", Toast.LENGTH_SHORT).show();
+                     //    new DownloadImage().execute("http://www.mountcarmeldelhi.com/getphoto.php?staff_id=10&sch_code=MCSANKIDS");
+
+                            return false;
+                        }
+                    });
+                    ImageView imageneweventlistback = (ImageView) fullscreenDialog.findViewById(R.id.imageneweventlistback);
+                    imageneweventlistback.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            fullscreenDialog.dismiss();
+                        }
+                    });
+                    fullscreenDialog.show();
+                }
+
+            });
             return myImageLayout;
         }
 
@@ -191,5 +228,38 @@ public class ImageShow extends AppCompatActivity {
             return view.equals(object);
         }
     }
+    private void getImage(String imageUrl, int desiredWidth, int desiredHeight)
+    {
+
+    }
 
 }
+
+
+ /*class DownloadImage extends AsyncTask<String, Void, Bitmap> {
+
+    private String TAG = "DownloadImage";
+
+    private Bitmap downloadImageBitmap(String sUrl) {
+        Bitmap bitmap = null;
+        try {
+            InputStream inputStream = new URL(sUrl).openStream();   // Download Image from URL
+            bitmap = BitmapFactory.decodeStream(inputStream);       // Decode Bitmap
+            inputStream.close();
+        } catch (Exception e) {
+            Log.d(TAG, "Exception 1, Something went wrong!");
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
+    @Override
+    protected Bitmap doInBackground(String... params) {
+        return downloadImageBitmap(params[0]);
+    }
+
+    protected void onPostExecute(Bitmap result) {
+        //saveImage(getApplicationContext(), result, "my_image.png"); }
+
+    }
+}*/

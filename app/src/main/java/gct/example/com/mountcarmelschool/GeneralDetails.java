@@ -115,7 +115,7 @@ public class GeneralDetails extends Fragment {
                 textStafAddress.setText(general.getStaff_add());
                 textStafCity.setText(general.getCity());
                 textStafPin.setText(general.getPincode());
-                textStafPh.setText(general.getPincode());
+                textStafPh.setText(general.getStaff_ph());
                 textStaffCountry.setText(general.getCountry());
             }
         }

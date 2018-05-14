@@ -116,9 +116,9 @@
 
                 <ImageView
                     android:id="@+id/imgcake"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/cake" />
+                    android:layout_width="80dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/imgbd" />
             </LinearLayout>
 
         </LinearLayout>

@@ -62,6 +62,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edittext"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"
                     android:inputType="text|textMultiLine|textCapSentences"

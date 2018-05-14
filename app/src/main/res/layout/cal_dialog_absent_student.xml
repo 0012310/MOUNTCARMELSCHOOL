@@ -11,7 +11,7 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:padding="5dp"
-        android:text=" Event Details"
+
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="@color/colorWhite"
         android:textStyle="normal" />
@@ -33,6 +33,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:layout_gravity="center"
                 android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -40,21 +41,24 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:textSize="15sp"
+
+                    android:gravity="center"
+                    android:textSize="18sp"
                     android:layout_gravity="center"
                     android:id="@+id/TextvieweventMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-
-
-                    />
-
-
+                    android:layout_margin="5dp" />
 
             </LinearLayout>
 
         </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/lvAbsentStudent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

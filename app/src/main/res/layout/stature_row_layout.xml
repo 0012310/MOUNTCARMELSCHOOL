@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:layout_width="170dp"
             android:layout_height="490dp"
-            android:background="@mipmap/staturel">
+            android:background="@mipmap/staturen">
 
 
 

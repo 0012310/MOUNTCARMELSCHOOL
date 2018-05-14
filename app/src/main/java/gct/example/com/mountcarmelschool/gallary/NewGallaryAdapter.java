@@ -2,6 +2,7 @@ package gct.example.com.mountcarmelschool.gallary;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class NewGallaryAdapter extends BaseAdapter {
 
     Activity activity;
     List<NewGallaryModel> listitems;
+    String monthname ;
 
     public NewGallaryAdapter(Activity activity, List<NewGallaryModel> listitems) {
         this.activity = activity;
@@ -60,7 +62,7 @@ public class NewGallaryAdapter extends BaseAdapter {
                 convertView.findViewById(R.id.textnew);
         ImageView textViewItemDescription = (ImageView) convertView.findViewById(R.id.image);
 
-        textViewItemName.setText(newGallaryModel.getMonth()  +" "+2017);
+        textViewItemName.setText(newGallaryModel.getMonth());
         if(newGallaryModel.getImageURl()!= null) {
             Picasso.with(activity).load(newGallaryModel.getImageURl()).resize(120, 120).into(textViewItemDescription);
         }
@@ -72,7 +74,12 @@ public class NewGallaryAdapter extends BaseAdapter {
 
                     Intent intent = new Intent (activity,EventNewGallary.class);
                     intent.putExtra("api","http://infoes.in/sunil/mcsd/user/eventByMonth?month="+newGallaryModel.getMonth_no());
+
+                intent.putExtra("Monthname",newGallaryModel.getMonth());
+
                     activity.startActivity(intent);
+                 Log.d("abc",newGallaryModel.getMonth());
+
 
             }
         });

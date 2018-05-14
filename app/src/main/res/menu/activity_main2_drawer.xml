@@ -134,6 +134,22 @@
     </group>
 
 
+
+    <group
+        android:id="@+id/SAttendanceSummary"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/SAttendanceSummary"
+            android:icon="@drawable/attendance"
+            android:title="Attendance Summary">
+
+        </item>
+
+    </group>
+
+
+
+
     <group
         android:id="@+id/Ssix"
         android:checkableBehavior="none">

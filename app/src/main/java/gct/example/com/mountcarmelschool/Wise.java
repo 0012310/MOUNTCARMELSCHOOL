@@ -21,7 +21,9 @@ public class Wise extends AppCompatActivity {
 
 
         imageWiseback= (ImageView) findViewById(R.id.imageWiseback);
+
         String wise_email = getIntent().getStringExtra("wise_email");
+
        // Toast.makeText(context, "wise_email"+wise_email, Toast.LENGTH_SHORT).show();
         imageWorthy= (ImageView) findViewById(R.id.imageWorthy);
 

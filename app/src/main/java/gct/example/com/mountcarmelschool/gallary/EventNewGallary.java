@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,6 +31,7 @@ public class EventNewGallary extends AppCompatActivity {
     ArrayList<PendingModel> list;
     NewEventAdapter adapter;
     ImageView imageneweventlistback;
+    TextView textFeebill;
 
 
     @Override
@@ -37,6 +39,7 @@ public class EventNewGallary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_new_gallary);
         imageneweventlistback= (ImageView) findViewById(R.id.imageneweventlistback);
+        textFeebill= (TextView) findViewById(R.id.textFeebill);
         imageneweventlistback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +47,10 @@ public class EventNewGallary extends AppCompatActivity {
             }
         });
 
+        if (getIntent().getStringExtra("Monthname")!=null){
+            textFeebill.setText(getIntent().getStringExtra("Monthname"));
+
+        }
         Bundle bundle =getIntent().getExtras();
         if(bundle !=null)
         {

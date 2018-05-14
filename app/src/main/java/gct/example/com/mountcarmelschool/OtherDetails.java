@@ -4,6 +4,7 @@ package gct.example.com.mountcarmelschool;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +21,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import gct.example.com.mountcarmelschool.classes.CommonMethods;
-import gct.example.com.mountcarmelschool.general_staff_details_data.General;
 import gct.example.com.mountcarmelschool.general_staff_details_data.GeneralStaffDetailsData;
 import gct.example.com.mountcarmelschool.general_staff_details_data.Other;
 
@@ -35,6 +39,7 @@ import gct.example.com.mountcarmelschool.general_staff_details_data.Other;
 public class OtherDetails extends Fragment {
     TextView textdateofbirth,textjoining,textqualification,textdepartment,textStafMob,textstaffroom;
     RequestQueue requestQueue;  Context context;
+
 
 
     public OtherDetails() {
@@ -48,6 +53,7 @@ public class OtherDetails extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_other_details, container, false);
         context = container.getContext();
+
 
         textdateofbirth = (TextView) view.findViewById(R.id.textdateofbirth);
         textjoining = (TextView) view.findViewById(R.id.textjoining);
@@ -95,8 +101,39 @@ public class OtherDetails extends Fragment {
 
             gct.example.com.mountcarmelschool.general_staff_details_data.Response response1 = data.getResponse();
             for (Other other : response1.getOther()) {
-                textdateofbirth.setText(other.getDob());
-                textjoining.setText(other.getDate_of_joining());
+
+                // textdateofbirth.setText(other.getDob());
+
+                String str =(other.getDob());
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-DD");
+                Date date = null;
+                try {
+                    date = (Date)formatter.parse(str);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                SimpleDateFormat newFormat = new SimpleDateFormat("DD-MM-yyyy");
+                String finalString = newFormat.format(date);
+                textdateofbirth.setText(finalString);
+
+                // textjoining.setText(other.getDate_of_joining());
+
+                String str1 = (other.getDate_of_joining());
+                DateFormat formatter1 = new SimpleDateFormat("yyyy-MM-DD");
+                Date date1 = null;
+                try {
+                    date1 = (Date)formatter1.parse(str1);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                SimpleDateFormat newFormat1 = new SimpleDateFormat("MM-DD-yyyy");
+                String finalString1 = newFormat1.format(date1);
+
+                textjoining.setText(finalString1);
+
+
                 textqualification.setText(other.getQualification());
                 textStafMob.setText(other.getStaff_mob());
                 textdepartment.setText(other.getDepartment());

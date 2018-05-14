@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Gallery"
+            android:text="Event Gallery(2017-18)"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="24sp"

@@ -31,10 +31,12 @@ public class FieldAdapter  extends ArrayAdapter<Field> {
     String fieldURl;
     List list=new ArrayList();
     FieldHolder fHolder;
+    private List<String> listitems1=new ArrayList<>();
 
-    public FieldAdapter(Context context, int resource,String fieldUrl) {
+    public FieldAdapter(Context context, int resource,String fieldUrl,List<String> listitems1) {
         super(context, resource);
         this.fieldURl = fieldUrl;
+        this.listitems1=listitems1;
     }
 
     public void add(Field object) {
@@ -55,7 +57,7 @@ public class FieldAdapter  extends ArrayAdapter<Field> {
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         FieldHolder fHolder;
 
         if (convertView == null) {
@@ -84,17 +86,20 @@ public class FieldAdapter  extends ArrayAdapter<Field> {
             @Override
             public void onClick(View v) {
                 //OPEN DETAIL ACTIVITY
-                 openDetailActivity(cid,PName,polNo);
+                 //openDetailActivity(cid,PName,polNo);
+                openDetailActivity(cid,PName,polNo,position);
             }
         });
         return convertView;
     }
-    private void openDetailActivity(String cid, String PName, String polNo) {
+    private void openDetailActivity(String cid, String PName, String polNo,int position) {
 
         Intent intent =new Intent(getContext(),ImageShow.class);
         intent.putExtra("imageURL",cid);
         intent.putExtra("des",PName);
         intent.putExtra("FieldUrl",fieldURl);
+        intent.putStringArrayListExtra("img_list", (ArrayList<String>) listitems1);
+        intent.putExtra("img_pos",position);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getContext().startActivity(intent);
     }

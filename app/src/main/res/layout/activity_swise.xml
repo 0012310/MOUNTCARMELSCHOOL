@@ -297,16 +297,18 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content" />
                 <ImageView
+                    android:layout_marginLeft="5dp"
                     android:onClick="SimageWorthy"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:background="@drawable/whi"
+                    android:background="@drawable/whiteneww"
                     android:layout_height="90dp" />
                 <ImageView
+                    android:layout_marginRight="5dp"
                     android:onClick="SimageIntellect"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:background="@drawable/bl"
+                    android:background="@drawable/blueneww"
                     android:layout_height="90dp" />
 
 
@@ -339,14 +341,14 @@
                    android:onClick="SimageStature"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:background="@drawable/imgr"
+                    android:background="@drawable/orangenew"
                     android:layout_height="90dp" />
                 <ImageView
                     android:layout_marginRight="5dp"
                    android:onClick="SimageEmotion"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:background="@drawable/imgg"
+                    android:background="@drawable/greennew"
                     android:layout_height="90dp" />
                 <ImageView
                     android:layout_weight="1"
@@ -387,29 +389,30 @@
 
 
             <ImageView
-                android:layout_weight=".4"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/wiselogo"
+                android:layout_weight=".8"
+                android:src="@mipmap/wiselogonew"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_gravity="bottom"
-                android:layout_weight="1.5"
-                android:layout_width="match_parent"
-                android:layout_height="0dp">
 
-            <android.support.v7.widget.CardView
 
-                android:id="@+id/card1View3"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="#2874A6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="10dp">
+                <android.support.v7.widget.CardView
+                    android:layout_weight=".8"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="#2874A6"
+                    android:id="@+id/card1View3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
 
 
@@ -437,9 +440,8 @@
                         android:gravity="end"
                         android:textColor="#FFF"
                         android:text="- Jesus Christ"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-
 
 
 
@@ -447,9 +449,9 @@
 
                 </LinearLayout>
 
-
+                    </LinearLayout>
             </android.support.v7.widget.CardView>
-            </LinearLayout>
+
 
 
 

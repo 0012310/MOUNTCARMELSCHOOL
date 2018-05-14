@@ -57,10 +57,6 @@ public class WishesListAdapter  extends RecyclerView.Adapter<WishesListAdapter.V
 
 
                     Intent intent = new Intent(context, Reply.class);
-
-
-
-
                     intent.putExtra("staff_id", birtdayWishesForList.getStaff_id());
 
                     Log.d("id_staff", "" + birtdayWishesForList.getStaff_id());

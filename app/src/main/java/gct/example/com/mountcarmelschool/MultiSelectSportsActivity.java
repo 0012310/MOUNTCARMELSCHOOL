@@ -51,11 +51,10 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
     private ActionMode actionMode;
     private boolean isMultiSelect = true;
     boolean flag = true;
-    //i created List of int type to store id of data, you can create custom class type data according to your need.
     private List<Integer> selectedIds = new ArrayList<>();
     private MyAdapter1 adapter;
     Context context;
-    String Standard,section;
+    String Standard, section;
     String titleMenu;
     String from_umpire_id, from_coach_id, player_sports_id, from_sports_circle_id, from_sports_team_id, from_sports_tournament_id, from_sports_event_id;
 
@@ -69,18 +68,24 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
             actionBar.setHomeButtonEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(false);
             actionBar.setDisplayShowHomeEnabled(false);
-
         }
-
-        from_umpire_id = getIntent().getStringExtra("explore_umpire_filter");
+        String e_mail1 = CommonMethods.getPreference(this, "e_mail");
+        String url = "http://infoes.in/sunil/mcsd/user/studentlist?t_mail=" + e_mail1;
+        Log.d("e_mail ", "" + e_mail1);
+        getStringReq(url, "" + e_mail1);
+        /*from_umpire_id = getIntent().getStringExtra("explore_umpire_filter");
         from_coach_id = getIntent().getStringExtra("explore_coach_filter");
-
         player_sports_id = getIntent().getStringExtra("player_sports_id");
         from_sports_circle_id = getIntent().getStringExtra("circle_sports_id");
         from_sports_team_id = getIntent().getStringExtra("team_sports_id");
         from_sports_tournament_id = getIntent().getStringExtra("nearby_tournament_filter");
-        from_sports_event_id = getIntent().getStringExtra("nearby_event_filter");
+        from_sports_event_id = getIntent().getStringExtra("nearby_event_filter");*/
         recyclerView = (RecyclerView) findViewById(R.id.widget_list);
+
+        section=getIntent().getStringExtra("sec");
+
+    // section=getIntent().getStringExtra("")
+
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -93,31 +98,17 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
 
                     if (actionMode == null) {
                         actionMode = startActionMode(MultiSelectSportsActivity.this); //show ActionMode.
+                        //actionMode.setTitle("Total Student "+String.valueOf(selectedIds.size() + "\t\t"+"Class : " + Standard + section)); //show selected item count on action mode.
                     }
                     multiSelect(position);
                 }
 
 
             }
-
-
             @Override
             public void onItemLongClick(View view, int position) {
-
             }
         }));
-
-
-       /* String e_mail1 = "karmveersingh2016@gmail.com";
-        String url = "http://infoes.in/sunil/mcsd/user/studentlist?t_mail=" + e_mail1;
-
-        getStringReq(url, "" + e_mail1);
-*/
-        String e_mail1 = CommonMethods.getPreference(this, "e_mail");
-        String url = "http://infoes.in/sunil/mcsd/user/studentlist?t_mail=" + e_mail1;
-        Log.d("e_mail ", "" + e_mail1);
-        getStringReq(url, "" + e_mail1);
-
     }
 
     private void getStringReq(String url, final String e_mail) {
@@ -136,15 +127,13 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
 
                             Standard = (String) json2.get("Standard");
                             section = json2.getString("Section_abc");
-                            titleMenu = Standard+section;
-                            Toast.makeText(MultiSelectSportsActivity.this,Standard+section,Toast.LENGTH_LONG).show();
+                            titleMenu = Standard + section;
+                         //   Toast.makeText(MultiSelectSportsActivity.this, Standard + section, Toast.LENGTH_LONG).show();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-
-
                 },
                 new Response.ErrorListener() {
                     @Override
@@ -166,22 +155,19 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
         };
         CommonMethods.callWebserviceForResponse(stringRequest, context);
     }
-
     private void getDetailsData(String response) {
         Attendancelist data = new Gson().fromJson(response, Attendancelist.class);
         gct.example.com.mountcarmelschool.model_attendacestudentlist.Response response1 = data.getResponse();
         int i = 1;
 
-        if (response1!=null){
+        if (response1 != null) {
             for (gct.example.com.mountcarmelschool.model_attendacestudentlist.List list : response1.getList()) {
-
-
                 MyData myData = new MyData(i, list.getFirstname(), list.getAdm_no());
                 lists.add(myData);
 
                 i++;
             }
-        }else
+        } else
             Toast.makeText(context, "No Data", Toast.LENGTH_SHORT).show();
 
         if (lists.size() > 0) {
@@ -197,9 +183,9 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
                     actionMode = startActionMode(MultiSelectSportsActivity.this); //show ActionMode.
                 }
                 if (selectedIds.size() > 0)
-                    actionMode.setTitle(String.valueOf(selectedIds.size()));//show selected item count on action mode.
+                    //actionMode.setTitle("Class "+String.valueOf(selectedIds.size()));//show selected item count on action mode.
                     //actionMode.setCustomView();
-
+                actionMode.setTitle("Total Students"+String.valueOf(selectedIds.size()+ "\t\t"+section)); //show selected item count on action mode.
                 else {
                     actionMode.setTitle(""); //remove item count from action mode.
                     //actionMode.finish(); //hide action mode.
@@ -219,10 +205,9 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
                     selectedIds.add(data.getId());
 
                 if (selectedIds.size() > 0)
-                    actionMode.setTitle(String.valueOf(selectedIds.size()+"\t\t\t"+Standard+section)); //show selected item count on action mode.
+                    actionMode.setTitle("Total Students"+String.valueOf(selectedIds.size() + "\t\t" + Standard + section)); //show selected item count on action mode.
                 else {
                     actionMode.setTitle("");
-
                     //remove item count from action mode.
                     //actionMode.finish(); //hide action mode.
                 }
@@ -237,29 +222,6 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
         inflater.inflate(R.menu.menu_select, menu);
         return true;
     }
-
-    /*@Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        if (titleMenu!=null){
-            menu.findItem(R.id.action_Title).setTitle(titleMenu);
-
-        }
-      //  menu.findItem(R.id.action_Title).setTitle(Standard+section);
-        return super.onPrepareOptionsMenu(menu);
-    }*/
-
-    @Override
-    public void onBackPressed() {
-
-      MultiSelectSportsActivity.this.finish();
-        super.onBackPressed();
-
-  //    calender_alert_dialog();
-
-    }
-
-
-
 
     @Override
     public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
@@ -281,7 +243,7 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
                     if (!TextUtils.isEmpty(stringBuilder.toString())) {
                         callApi(stringBuilder.toString());
                     }
-                    Intent intent=new Intent(MultiSelectSportsActivity.this,Main2Activity.class);
+                    Intent intent = new Intent(MultiSelectSportsActivity.this, Main2Activity.class);
                     startActivity(intent);
                     return true;
                 }
@@ -290,11 +252,11 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
     }
 
     private void callApi(String adm_ids) {
-        Toast.makeText(context, "" + adm_ids.substring(0,adm_ids.length()), Toast.LENGTH_SHORT).show();
-        Log.d("callApi: ","" + adm_ids.substring(0,adm_ids.length()));
+    //    Toast.makeText(context, "" + adm_ids.substring(0, adm_ids.length()), Toast.LENGTH_SHORT).show();
+        Log.d("callApi: ", "" + adm_ids.substring(0, adm_ids.length()));
         String e_mail1 = CommonMethods.getPreference(this, "e_mail");
         String url = "http://infoes.in/sunil/mcsd/user/studentlist?t_mail=" + e_mail1;
-        sendStringReq("http://infoes.in/sunil/mcsd/user/make_att", adm_ids.substring(0,adm_ids.length()-1));
+        sendStringReq("http://infoes.in/sunil/mcsd/user/make_att", adm_ids.substring(0, adm_ids.length() - 1));
     }
 
     private void sendStringReq(String url, final String adm_no) {
@@ -304,7 +266,7 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
                     @Override
                     public void onResponse(String response) {
                         Log.d("sendDataResult", "" + response);
-                        //Toast.makeText(context, "Attendance Updated.", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(context, "Attendance marked success", Toast.LENGTH_SHORT).show();
                     }
                 },
                 new Response.ErrorListener() {
@@ -322,7 +284,7 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("adm_no", adm_no);
-                Log.d("adm_no_tosend",""+adm_no);
+                Log.d("adm_no_tosend", "" + adm_no);
                 return params;
             }
         };
@@ -331,6 +293,7 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
 
     @Override
     public void onDestroyActionMode(ActionMode mode) {
+        getOut();
         if (actionMode != null) {
             actionMode.setTitle("");
         }
@@ -338,5 +301,29 @@ public class MultiSelectSportsActivity extends AppCompatActivity implements Acti
         isMultiSelect = false;
         selectedIds = new ArrayList<>();
         adapter.setSelectedIds(new ArrayList<Integer>());
+    }
+
+    private void getOut() {
+        MultiSelectSportsActivity.this.finish();
+        Intent intent = new Intent(context,Main2Activity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:onBackPressed();
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(context,Main2Activity.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        MultiSelectSportsActivity.this.finish();
     }
 }

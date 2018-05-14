@@ -1,5 +1,6 @@
 package gct.example.com.mountcarmelschool;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ import java.util.Iterator;
 import javax.net.ssl.HttpsURLConnection;
 
 public class SStature extends AppCompatActivity {
+    Context context;
     ImageView imagesStatureback;
     EditText edittextStature;
     Button butttonStatureSubmit;
@@ -35,6 +37,7 @@ public class SStature extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sstature);
+        context=SStature.this;
         if (null!= getIntent().getStringExtra("scanner_resultStaure")){
             scanner_res = getIntent().getStringExtra("scanner_resultStaure");
            // Toast.makeText(this, ""+scanner_res, Toast.LENGTH_SHORT).show();
@@ -51,6 +54,7 @@ public class SStature extends AppCompatActivity {
                 new SendRequest().execute();
                 Intent i = new Intent(SStature.this,Main2Activity.class);
                 startActivity(i);
+                Toast.makeText(context, "card send", Toast.LENGTH_SHORT).show();
             }
         });
 

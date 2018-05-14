@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:background="#d2d2d2"
                 android:fontFamily="serif"
-                android:hint="Give Wise Card"
+                android:hint="Give Emotion Card"
                 android:textColor="#4a4747"
                 android:textColorHint="#000000"                />
 

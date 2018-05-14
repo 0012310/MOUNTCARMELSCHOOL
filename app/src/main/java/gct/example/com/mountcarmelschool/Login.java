@@ -1,7 +1,9 @@
 package gct.example.com.mountcarmelschool;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -65,12 +67,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
     Context context;
     private SharedPreferences.Editor editor;
     private SharedPreferences prefs;
+    private String sec="";
 
 
     private ImageView profile_pic;
     private TextView name, email_id, token;
     private Button btn_logout;
-    private com.google.android.gms.common.internal.zzaf  btn_login;
+    private com.google.android.gms.common.internal.zzaf btn_login;
     private GoogleApiClient googleApiClient;
     private static final int REQ_CODE = 101;
     LinearLayout profile_section;
@@ -90,6 +93,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
         name = (TextView) findViewById(R.id.name);
         email_id = (TextView) findViewById(R.id.email_id);
         token = (TextView) findViewById(R.id.token);
+
         btn_login = (com.google.android.gms.common.internal.zzaf) findViewById(R.id.btn_login);
         btn_logout = (Button) findViewById(R.id.btn_logout);
         profile_pic = (ImageView) findViewById(R.id.profile_pic);
@@ -106,7 +110,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
 
         }
         String email = username.getText().toString();
-
+        //getStringReq();
 
     }
 
@@ -155,18 +159,27 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
                 loginDataForList.setTimestamp(response1.getTimestamp());
                 loginDataForList.setName(response1.getName());
                 loginDataForList.setImg(response1.getImg());
-
+                loginDataForList.setSection(response1.getSection());
+                sec = response1.getSection();
                 //Log.d("email_data",response1.getEmail()+"\n"+response1.getId()+"\n"+response1.getType()+"\n"+response1.getSchoolcode()+"\n"+response1.getTokengoogle()+"\n"+response1.getTimestamp()+"\n"+response1.getName()+"\n"+response1.getImg());
-
+                Log.d("sec_data",response1.getSection());
                 if (response1.getType() != null && response1.getEmail() != null) {
                     goTOMain2(response1.getEmail(), loginDataForList.getName(), loginDataForList.getType(), loginDataForList.getImg());
-                    //Log.d("name_data",response1.getEmail()+"\n"+response1.getType()+"\n"+response1.getImg());
+                    //
+                }
+
+                Intent i = new Intent(Login.this, MultiSelectSportsActivity.class);
+                if (null != sec) {
+                    i.putExtra("sec",sec);
+                    //startActivity(i);
                 }
             }
+
+
         } else if (data.getStatus().equals("false")) {
 
 
-         //  startActivity(new Intent(this, Login.class));
+            //  startActivity(new Intent(this, Login.class));
 
         }
     }
@@ -216,6 +229,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
     }
 
     String email1;
+
     private void handelResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             GoogleSignInAccount account = result.getSignInAccount();
@@ -228,24 +242,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
             token.setText(name2);
             sessionManager.createLoginSession(name2, email1);
 
-            LocalSharedPreferences.saveUserName(context,name1);
-            LocalSharedPreferences.saveUserEmail(context,email1);
+            LocalSharedPreferences.saveUserName(context, name1);
+            LocalSharedPreferences.saveUserEmail(context, email1);
 
-
-
-
+            CommonMethods.setPreference(context, "email_token", email1);
             Intent i = new Intent(getApplicationContext(), Main2Activity.class);
             i.putExtra("e_mail", email1);
-            Log.d("email33",""+email1);
-
-
+            Log.d("email33", "" + email1);
             startActivity(i);
 
             updateUI(true);
-
-
+            //getStringReq(URL_LOGIN,email1);
             HashMap<String, String> user = sessionManager.getUserDetails();
-
             // name
             String name = user.get(SessionManager.KEY_NAME);
 
@@ -287,4 +295,5 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
     }
+
 }

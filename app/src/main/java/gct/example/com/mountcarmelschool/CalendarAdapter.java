@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -22,16 +23,17 @@ import java.util.List;
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHolder>  {
 
     private List<Bean> listiems,movieList;
-    private Activity activity;
+    private GregorianCalendar activity;
     private List<Bean> arraylist;
 
 
 
-    public CalendarAdapter(List<Bean> listitems, Activity activity) {
-        this.listiems = listitems;
+    public CalendarAdapter(AttendanceSummary listitems, GregorianCalendar activity) {
+
+        this.listiems = (List<Bean>) listitems;
         this.activity= activity;
-        this.movieList=listitems;
-        this.arraylist=listitems;
+        this.movieList= (List<Bean>) listitems;
+        this.arraylist= (List<Bean>) listitems;
 
 
 

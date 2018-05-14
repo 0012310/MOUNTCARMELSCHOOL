@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -59,6 +60,8 @@ import gct.example.com.mountcarmelschool.model_assessment_data.AssessmentData;
 import gct.example.com.mountcarmelschool.model_rahul.SessionManager;
 import gct.example.com.mountcarmelschool.models_staff_noticdata.NoticData;
 
+import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
+import static gct.example.com.mountcarmelschool.R.id.SAttendance;
 import static gct.example.com.mountcarmelschool.R.id.myassignment;
 
 public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
@@ -84,7 +87,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     SessionManager sessionManager;
     private GoogleApiClient googleApiClient;
     private static final int REQ_CODE = 101;
-
+    String sec="";
     LinearLayout linearLayoutStudentfnotic;
 
 
@@ -100,10 +103,48 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.KEY_EMAIL);
         getStringReq1(URL_LOGIN, email);
+
+
+
+
+
         Log.d("email22",""+email);
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
 
+        //String e_mail = CommonMethods.getPreference(context, "email_token");
+        String e_mail = LocalSharedPreferences.getUserEmail(context);
+        String url = "http://infoes.in/sunil/mcsd/user/updatedeviceid?e_mail=" + e_mail+"&device_id="+LocalSharedPreferences.getToken(context);
+        Log.d("email_token", e_mail);
+        Log.d("token_url", url);
+       getStringReqSend(url, e_mail);
+
+    }
+
+    private void getStringReqSend(String URL, final String email) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest strReq = new StringRequest(Request.Method.PUT, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("responseToken", response);
+                // Toast.makeText(context, "" + response, Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("", "Error: " + error.getMessage());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+               /*params.put("e_mail", ""+email);
+               Log.d("emailId",email);
+               params.put("device_id",""+LocalSharedPreferences.getToken(context)*/
+                return params;
+            }
+        };
+        queue.add(strReq);
     }
 
 
@@ -209,7 +250,8 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                 textlinkOnClick(notice.getAttachment_name());
             }
         } else if (data.getStatus().equals("false")) {
-            card1Main2.setVisibility(View.GONE);
+           card1Main2.setVisibility(View.GONE);
+
 
             /*Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new R
             esultCallback<Status>() {
@@ -326,9 +368,18 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
         } else if (id == R.id.SAttendance) {
             //  Toast.makeText(context, "hii attendance", Toast.LENGTH_SHORT).show();
-          startActivity(new Intent(Main2Activity.this, MultiSelectSportsActivity.class));
+            startActivity(new Intent(Main2Activity.this, MultiSelectSportsActivity.class));
+
+            Intent i =new Intent(Main2Activity.this,MultiSelectSportsActivity.class);
+            i.putExtra("sec",sec);
+            startActivity(i);
+
 
             //  startActivity(new Intent(Main2Activity.this, NewAttendance.class));
+
+        }else if(id==R.id.SAttendanceSummary) {
+            startActivity(new Intent(Main2Activity.this, AttendanceSummary.class));
+
 
         }else if (id == R.id.sms) {
 
@@ -435,7 +486,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                 Map<String, String> params = new HashMap<String, String>();
                 //params.put("email", "aabhakatre1910@mountcarmeldelhi.com");
                 params.put("email", email);
-                //params.put("password", "abc@androidhive.info");
+
                 return params;
             }
         };
@@ -456,10 +507,9 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                 loginDataForList.setTimestamp(response1.getTimestamp());
                 loginDataForList.setName(response1.getName());
                 loginDataForList.setImg(response1.getImg());
+                sec=response1.getSection();
                 if (response1.getType() != null && response1.getEmail() != null) {
-
                     goTOMain2(response1.getEmail(), loginDataForList.getName(), loginDataForList.getType(), loginDataForList.getImg());
-
                 }
             }
         } else if (data.getStatus().equals("false")) {
@@ -546,6 +596,8 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
 
 
+
+
         } else if (types.equalsIgnoreCase("ADMIN")) {
 
             String url_staff = "http://infoes.in/sunil/mcsd/user/staffNotice?e_mail=" + e_mail1;
@@ -563,13 +615,14 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             navigationView.getMenu().findItem(R.id.transportbill).setVisible(false);
             navigationView.getMenu().findItem(R.id.feereceipt).setVisible(false);
             navigationView.getMenu().findItem(R.id.transportreceipt).setVisible(false);
+            navigationView.getMenu().findItem(R.id.SAttendanceSummary).setVisible(false);
 
 
         }
 
         text_name.setText("" + LocalSharedPreferences.getUserName(context));
 
-        statusprofile.setText(""+LocalSharedPreferences.getUserEmail(context));
+      //  statusprofile.setText(""+LocalSharedPreferences.getUserEmail(context));
 
 
         if (img != null) {
@@ -585,7 +638,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         String name = splitStr[0];
         String s1 = name.substring(0, 1).toUpperCase();
         String nameCapitalized = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
-        setTitle(Html.fromHtml("<medium>Hello ! "+nameCapitalized +" </medium>"));
+        setTitle(Html.fromHtml("<medium>Hello! "+nameCapitalized +" </medium>"));
 
         card1Main2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -633,6 +686,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                 navigationView.getMenu().findItem(R.id.SAttendance).setVisible(false);
                 navigationView.getMenu().findItem(R.id.sms).setVisible(false);
                 navigationView.getMenu().findItem(R.id.staffbirthday).setVisible(false);
+                navigationView.getMenu().findItem(R.id.SAttendanceSummary).setVisible(false);
 
 
             }
@@ -653,6 +707,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             navigationView.getMenu().findItem(R.id.SAttendance).setVisible(true);
             navigationView.getMenu().findItem(R.id.SSWise).setVisible(true);
             navigationView.getMenu().findItem(R.id.staffbirthday).setVisible(true);
+            navigationView.getMenu().findItem(R.id.SAttendanceSummary).setVisible(true);
 
         }
         navigationView.setNavigationItemSelectedListener(this);

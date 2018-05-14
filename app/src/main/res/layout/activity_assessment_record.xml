@@ -49,18 +49,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-
-
-
-        <!--    <TextView
-                android:layout_margin="10dp"
-                android:background="@drawable/abcd2"
-                android:id="@+id/assessmentdetails"
-                android:layout_width="match_parent"
-                android:layout_height="80dp" />-->
-
-
         </LinearLayout>
 
 

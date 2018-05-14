@@ -3,6 +3,8 @@ package gct.example.com.mountcarmelschool.classes;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import static gct.example.com.mountcarmelschool.Genral.name;
+
 /**
  * Created by GCT on 11/29/2017.
  */
@@ -36,6 +38,7 @@ public class LocalSharedPreferences {
         String gallery_event_id = pref.getString("name", "");
         return gallery_event_id;
     }
+
 
     public static void saveUserEmail(Context context, String email) {
         SharedPreferences pref = context.getSharedPreferences(strSharedPrefName, context.MODE_PRIVATE);
@@ -81,5 +84,18 @@ public class LocalSharedPreferences {
         editor.commit();
     }
 
+    public static void saveToken(Context context, String refreshedToken) {
+        SharedPreferences pref = context.getSharedPreferences(strSharedPrefName, context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("refreshedToken", refreshedToken);
+        editor.commit();
+    }
+
+    public static String getToken(Context context) {
+        SharedPreferences pref = context.getSharedPreferences(strSharedPrefName, context.MODE_PRIVATE);
+        String gallery_event_id = pref.getString("refreshedToken", "");
+        return gallery_event_id;
+    }
+
+
 }
-//adapter kha h gallery adapter k name se hok

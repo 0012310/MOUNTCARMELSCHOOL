@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -141,13 +142,6 @@ public class School_Calendar extends AppCompatActivity {
                 String[] separatedTime = selectedGridDate.split("-");
                 String gridvalueString = separatedTime[2].replaceFirst("^0*", ""); // taking last part of date. ie; 2 from 2012-12-02.
                 int gridvalue = Integer.parseInt(gridvalueString);
-
-                // navigate to next or previous month on clicking offdays.
-               /* Calendar c = Calendar.getInstance();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                String curentDateString = df.format(c.getTime());
-                Log.d("current_date",selectedGridDate);*/
-
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
                 Date strDate = null;
@@ -177,6 +171,7 @@ public class School_Calendar extends AppCompatActivity {
                     refreshCalendar();
                 }
                 ((CalendarAdapter2) parent.getAdapter()).setSelected(v);
+
                 if (TextUtils.isEmpty(helper.catalog_outdated)) {
                     //region "Admin and Staff"
 
@@ -195,7 +190,6 @@ public class School_Calendar extends AppCompatActivity {
                                     Log.d("abc", str);
 
                                     break;
-
                                 }
                             }
                         }
@@ -205,9 +199,7 @@ public class School_Calendar extends AppCompatActivity {
                         for (int i = 0; i < list.size(); i++) {
                             if (list.size() > 0) {
                                 if (selectedGridDate.contains(list.get(i).getDate())) {
-
                                     //  Toast.makeText(context, ""+list.get(i).getMessage(), Toast.LENGTH_SHORT).show();
-
                                     EventStudent(list.get(i).getMessage());
                                     String str = (list.get(i).getMessage());
                                     Log.d("abc", str);
@@ -222,29 +214,25 @@ public class School_Calendar extends AppCompatActivity {
 
             }
 
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>> this for student
+
             private void ShowMessage(String string) {
+
                 android.support.v7.app.AlertDialog scheduleDialog;
                 LayoutInflater inflater = (LayoutInflater) School_Calendar.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 android.support.v7.app.AlertDialog.Builder builderAlert = new android.support.v7.app.AlertDialog.Builder(School_Calendar.this);
                 final View alert_view = inflater.inflate(R.layout.cal_dialog_message, null);
                 final TextView TextvieweventMessage = (TextView) alert_view.findViewById(R.id.TextvieweventMessage);
+                TextvieweventMessage.setMovementMethod(new ScrollingMovementMethod());
                 TextvieweventMessage.setText(string);
                 builderAlert.setView(alert_view);
-                builderAlert.setPositiveButton("DONE", new DialogInterface.OnClickListener() {
+                builderAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         dialog.dismiss();
                     }
                 });
-                builderAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        dialog.dismiss();
-                    }
-                });
-
 
                 builderAlert.setCancelable(false);
                 scheduleDialog = builderAlert.create();
@@ -254,29 +242,30 @@ public class School_Calendar extends AppCompatActivity {
         });
 
     }
-
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>> this for staff
     private void EventStudent(String string) {
         android.support.v7.app.AlertDialog scheduleDialog;
         LayoutInflater inflater = (LayoutInflater) School_Calendar.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         android.support.v7.app.AlertDialog.Builder builderAlert = new android.support.v7.app.AlertDialog.Builder(School_Calendar.this);
         final View alert_view = inflater.inflate(R.layout.cal_dialoge_student, null);
         final TextView TextvieweventMessageStudent = (TextView) alert_view.findViewById(R.id.TextvieweventMessageStudent);
+        TextvieweventMessageStudent.setMovementMethod(new ScrollingMovementMethod());
         TextvieweventMessageStudent.setText(string);
         builderAlert.setView(alert_view);
-        builderAlert.setPositiveButton("DONE", new DialogInterface.OnClickListener() {
+        builderAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
                 dialog.dismiss();
             }
         });
-        builderAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+       /* builderAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
                 dialog.dismiss();
             }
-        });
+        });*/
 
 
         builderAlert.setCancelable(false);
@@ -414,7 +403,6 @@ public class School_Calendar extends AppCompatActivity {
                 editTextDo.setText(Id.get(pos - 1));
                 final int finalPos = pos;
 
-
                 iVDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -445,6 +433,7 @@ public class School_Calendar extends AppCompatActivity {
                 if (!TextUtils.isEmpty(editTextCalData.getText().toString())) {
                     insertStringReq("", "A", editTextCalData.getText().toString(), string);//spinner_val
                     finish();
+                    startActivity(getIntent());
                 }
                 dialog.dismiss();
             }
@@ -463,12 +452,13 @@ public class School_Calendar extends AppCompatActivity {
         }
         if (pos != 0) {
         }
-        builderAlert.setCancelable(true);
+        builderAlert.setCancelable(false);
         scheduleDialog = builderAlert.create();
         builderAlert.show();
 
     }
 
+    //>>>>>>>>>>>.....  update
     private void updateCalData(final String id, final String message) {
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest strReq = new StringRequest(Request.Method.POST, "http://infoes.in/sunil/mcsd/user/schoolCalender", new Response.Listener<String>() {
@@ -481,8 +471,9 @@ public class School_Calendar extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getString("success").equals("1") && jsonObject.getString("response").equals("true")) {
                         progressDialog.dismiss();
-                        startActivity(new Intent(School_Calendar.this, Main2Activity.class));
-
+                        //startActivity(new Intent(School_Calendar.this, Main2Activity.class));
+                        finish();
+                        startActivity(getIntent());
                     } else {
                         progressDialog.dismiss();
                         Toast.makeText(School_Calendar.this, "" + response, Toast.LENGTH_SHORT).show();
@@ -514,7 +505,7 @@ public class School_Calendar extends AppCompatActivity {
         };
         queue.add(strReq);
     }
-
+//>>>>>>>>>>>.....  delte
     private void deleteCalData(final String id, final String message) {
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest strReq = new StringRequest(Request.Method.POST, "http://infoes.in/sunil/mcsd/user/schoolCalender", new Response.Listener<String>() {
@@ -526,7 +517,9 @@ public class School_Calendar extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getString("success").equals("1") && jsonObject.getString("response").equals("true")) {
                         progressDialog.dismiss();
-                        startActivity(new Intent(School_Calendar.this, Main2Activity.class));
+                        //startActivity(new Intent(School_Calendar.this, Main2Activity.class));
+                        finish();
+                        startActivity(getIntent());
                     } else {
                         Toast.makeText(School_Calendar.this, "" + response, Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
@@ -562,7 +555,6 @@ public class School_Calendar extends AppCompatActivity {
         adapter.refreshDays();
         adapter.notifyDataSetChanged();
         handler.post(calendarUpdater); // generate some calendar items
-
         title.setText(android.text.format.DateFormat.format("MMMM yyyy", month));
     }
 
@@ -583,6 +575,7 @@ public class School_Calendar extends AppCompatActivity {
             for (int i = 0; i <1; i++) {
                 itemvalue = df.format(itemmonth.getTime());
                 itemmonth.add(GregorianCalendar.DATE, 1);
+
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://infoes.in/sunil/mcsd/user/schoolCalender",
                         new Response.Listener<String>() {
                     @Override

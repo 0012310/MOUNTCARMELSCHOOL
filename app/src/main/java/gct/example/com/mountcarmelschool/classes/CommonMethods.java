@@ -2,6 +2,9 @@ package gct.example.com.mountcarmelschool.classes;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
@@ -39,10 +42,8 @@ public class CommonMethods {
 
         }
         return sb.toString();
-
-
-
     }
+
     private static final String PREFS_NAME = "preferenceName";
 
     public static boolean setPreference(Context context, String key, String value) {
@@ -67,6 +68,16 @@ public class CommonMethods {
 
     public static void reloadActivity(Splash splash) {
 
+    }
+    public static boolean isOnline(Context context) {
+        ConnectivityManager conMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
+
+        if(netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable()){
+            Toast.makeText(context, "No Internet connection!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 }
 

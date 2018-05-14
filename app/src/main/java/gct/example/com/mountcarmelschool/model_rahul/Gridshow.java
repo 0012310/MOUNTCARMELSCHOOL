@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ public class Gridshow extends AppCompatActivity {
 
     GridView grid;
     private List<Field> listitems;
+    private List<String> listitems1=new ArrayList<>();
     private FieldAdapter fieldAdapter;
     Field fieldmodel;
     private List<Field> fieldList;
@@ -48,7 +50,7 @@ public class Gridshow extends AppCompatActivity {
         url_data =cid;
         listitems = new ArrayList<>();
         grid=(GridView)findViewById(R.id.grid);
-        fieldAdapter =new FieldAdapter(getApplicationContext(),R.layout.single_view,cid);
+        fieldAdapter =new FieldAdapter(getApplicationContext(),R.layout.single_view,cid,listitems1);
         grid.setAdapter(fieldAdapter);
         loadRecyckerViewData();
     }
@@ -85,8 +87,8 @@ public class Gridshow extends AppCompatActivity {
                                 String caseId = finalobject.getString("imgid");
                                 String CCNNo = (finalobject.getString("image"));
                                 String Claim = (finalobject.getString("description"));
-
                                 fieldmodel = new Field( caseId,CCNNo,Claim);
+                                listitems1.add(CCNNo);
                                 fieldAdapter.add(fieldmodel);
                                 i++;
                             }

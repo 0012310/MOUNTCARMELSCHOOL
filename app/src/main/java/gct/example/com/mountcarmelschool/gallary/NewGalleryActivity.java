@@ -29,6 +29,8 @@ public class NewGalleryActivity extends AppCompatActivity {
     String Urls;
     ImageView imagenewGallerback ;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +60,8 @@ public class NewGalleryActivity extends AppCompatActivity {
                         NewGallaryModel newGallaryModel = new NewGallaryModel(
                                 object.getString("Month"),
                                 object.getString("Image"),
-                                object.getString("Month_no")
+                                object.getString("Month_no"));
 
-                        );
                         listitem.add(newGallaryModel);
                         adapter = new NewGallaryAdapter(NewGalleryActivity.this,listitem);
                         gridView.setAdapter(adapter);

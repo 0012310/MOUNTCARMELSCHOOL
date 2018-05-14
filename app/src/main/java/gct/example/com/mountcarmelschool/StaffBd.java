@@ -44,7 +44,7 @@ public class StaffBd extends AppCompatActivity {
 
     Context context;
     ImageView imagebdback,imgcake;
-    TextView textfirstnameofstaff, textlasttnameofstaff,textdateofbirth,textviewwishDetails;
+    TextView textfirstnameofstaff, textlasttnameofstaff,textdateofbirth;
     String e_mail;
     RecyclerView staffbirtdayrecycler,  staffbirtdayrecyclerWishesDetail;
     StaffBdAdapter staffBdAdapter;
@@ -73,7 +73,7 @@ public class StaffBd extends AppCompatActivity {
         textdateofbirth = (TextView) findViewById(R.id.textdateofbirth);
         textfirstnameofstaff = (TextView) findViewById(R.id.textfirstnameofstaff);
         textlasttnameofstaff = (TextView) findViewById(R.id.textlasttnameofstaff);
-        textviewwishDetails= (TextView) findViewById(R.id.textviewwishDetails);
+
         imgcake = (ImageView) findViewById(R.id.imgcake);
 
         imagebdbackOnclick();
@@ -87,18 +87,6 @@ public class StaffBd extends AppCompatActivity {
 
         String urlWish = "http://infoes.in/sunil/mcsd/user/getbirthdaywish?e_mail=" + e_maill;
         getStringReqW(urlWish,""+e_maill);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -195,7 +183,7 @@ public class StaffBd extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
 
-                        Toast.makeText(context, "" + volleyError, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "" + volleyError, Toast.LENGTH_SHORT).show();
 
                         if (volleyError instanceof NoConnectionError) {
                             Toast.makeText(context, "No Internet Found!", Toast.LENGTH_SHORT).show();
@@ -226,8 +214,6 @@ public class StaffBd extends AppCompatActivity {
                 birtdayWishesForList.setMessage(general.getMessage());
                 birtdayWishesForList.setStaff_id(general.getStaff_id());
                 birtdayWishesForList.setStatus(general.getStatus());
-
-
 
                 birtdayWishesForListArrayList.add(birtdayWishesForList);
 

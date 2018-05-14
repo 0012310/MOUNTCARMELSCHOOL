@@ -1,5 +1,6 @@
 package gct.example.com.mountcarmelschool;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ import java.util.Iterator;
 import javax.net.ssl.HttpsURLConnection;
 
 public class SEmotion extends AppCompatActivity {
+    Context context;
     ImageView imagessemotionback;
     Button bottonSEmotionSubmit;
     EditText editTextSEmotion ;
@@ -36,6 +38,7 @@ public class SEmotion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_semotion);
+        context=SEmotion.this;
 
         if (null != getIntent().getStringExtra("scanner_resultEmotion")) {
              scanner_res = getIntent().getStringExtra("scanner_resultEmotion");
@@ -52,6 +55,7 @@ public class SEmotion extends AppCompatActivity {
                 new SendRequest().execute();
                 Intent i = new Intent(SEmotion.this,Main2Activity.class);
                 startActivity(i);
+                Toast.makeText(context, "card send", Toast.LENGTH_SHORT).show();
 
             }
         });

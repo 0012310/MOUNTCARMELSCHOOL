@@ -1,5 +1,6 @@
 package gct.example.com.mountcarmelschool;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ import java.util.Iterator;
 import javax.net.ssl.HttpsURLConnection;
 
 public class SIntellect extends AppCompatActivity {
+    Context context;
     ImageView imagesintellectyback;
     Button buttonSIntellectSubmit;
     EditText editTextSIntellect;
@@ -35,6 +37,7 @@ public class SIntellect extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sintellect);
+        context=SIntellect.this;
 
 
 
@@ -54,6 +57,8 @@ public class SIntellect extends AppCompatActivity {
                 new SendRequest().execute();
                 Intent i = new Intent(SIntellect.this,Main2Activity.class);
                 startActivity(i);
+
+                Toast.makeText(context, "card send", Toast.LENGTH_SHORT).show();
 
             }
         });

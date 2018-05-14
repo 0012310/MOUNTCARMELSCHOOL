@@ -107,6 +107,10 @@ public class CalendarAdapter2 extends BaseAdapter {
         } else {
             // setting curent month's days in blue color.
             dayView.setTextColor(Color.BLUE);
+
+            if (position==0){
+                dayView.setTextColor(Color.RED);
+            }
         }
 
         if (dayString.get(position).equals(curentDateString)) {
@@ -116,6 +120,10 @@ public class CalendarAdapter2 extends BaseAdapter {
             v.setBackgroundResource(R.drawable.list_item_background);
         }
         dayView.setText(gridvalue);
+
+        if (position%7 == 0||position%7 == 6){
+            dayView.setTextColor(Color.RED);
+        }
 
         // create date string for comparison
         String date = dayString.get(position);
@@ -143,7 +151,7 @@ public class CalendarAdapter2 extends BaseAdapter {
             previousView.setBackgroundResource(R.drawable.list_item_background);
         }
         previousView = view;
-        view.setBackgroundResource(R.drawable.calendar_cel_selectl);
+        view.setBackgroundResource(R.drawable.cel_datelight);
         return view;
     }
 

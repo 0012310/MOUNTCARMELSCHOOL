@@ -61,6 +61,8 @@ public class SWorthy extends AppCompatActivity {
                 Intent i = new Intent(SWorthy.this,Main2Activity.class);
                 startActivity(i);
 
+                Toast.makeText(context, "card send", Toast.LENGTH_SHORT).show();
+
             }
         });
 
